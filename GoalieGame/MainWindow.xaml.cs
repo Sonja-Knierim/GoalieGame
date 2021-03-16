@@ -42,16 +42,16 @@ namespace BallSpiel
             _animationsTimer.Interval = TimeSpan.FromMilliseconds(50);
             _animationsTimer.Tick += PositionBall;
             _leftGameTimer.Interval = TimeSpan.FromMilliseconds(20);
-            _leftGameTimer.Tick += PositionLeftRacket;
+            _leftGameTimer.Tick += PositionLeftGoalie;
             _leftGameTimer.Start();
         }
-        // Finds Direction of the ball and moves it
+        // Find direction of the ball and move it
         private void PositionBall(object sender, EventArgs e)
         {
             var x = Canvas.GetLeft(Ball);
             var y = Canvas.GetTop(Ball);
 
-            // Moves the ball
+            // Move the ball
             if (goRight)
             {
                 Canvas.SetLeft(Ball, x + playerSpeed);
@@ -70,8 +70,8 @@ namespace BallSpiel
                 Canvas.SetTop(Ball, y - playerSpeed);
             }
 
-            // Sets the next moving x-direction of the ball.
-            // Counts the hit of the left and right wall.
+            // Set the next moving x-direction of the ball.
+            // Count the hit of the left and right wall.
             if (Canvas.GetLeft(Ball) >= Playground.ActualWidth - Ball.ActualWidth)
             {
                 goRight = false;
@@ -86,23 +86,29 @@ namespace BallSpiel
             }
 
             //Goalie shoot the ball and increase points for the goalie
-            if (Canvas.GetTop(Ball) >= Canvas.GetTop(RacketLeft) && (Canvas.GetTop(Ball) + Ball.Height) <= (Canvas.GetTop(RacketLeft) + RacketLeft.Height) &&
-               Canvas.GetLeft(Ball) > Canvas.GetLeft(RacketLeft) && Canvas.GetLeft(Ball) <= (Canvas.GetLeft(RacketLeft) + RacketLeft.Width))
+            if (goRight == false && 
+                Canvas.GetTop(Ball) >= Canvas.GetTop(GoalieLeft) && 
+               (Canvas.GetTop(Ball) + Ball.Height) <= (Canvas.GetTop(GoalieLeft) + GoalieLeft.Height) &&
+               Canvas.GetLeft(Ball) > Canvas.GetLeft(GoalieLeft) && 
+               Canvas.GetLeft(Ball) <= (Canvas.GetLeft(GoalieLeft) + GoalieLeft.Width))
             {
                 goRight = true;
                 goalie_1 += 1;
-                goalieLabel_1.Content = $"{goalie_1} for Goalie 1";
+                goalieLabel_1.Content = $"{goalie_1} Point for Goalie 1";
             }
-            else if (Canvas.GetTop(Ball) >= Canvas.GetTop(RacketRight) && (Canvas.GetTop(Ball) + Ball.Height) <= (Canvas.GetTop(RacketRight) + RacketRight.Height) &&
-                (Canvas.GetLeft(Ball) + Ball.Width) < (Canvas.GetLeft(RacketRight) + RacketRight.Width) && (Canvas.GetLeft(Ball) + Ball.Width) >= Canvas.GetLeft(RacketRight))
+            else if (goRight == true && 
+                 Canvas.GetTop(Ball) >= Canvas.GetTop(GoalieRight) && 
+                (Canvas.GetTop(Ball) + Ball.Height) <= (Canvas.GetTop(GoalieRight) + GoalieRight.Height) &&
+                (Canvas.GetLeft(Ball) + Ball.Width) < (Canvas.GetLeft(GoalieRight) + GoalieRight.Width) && 
+                (Canvas.GetLeft(Ball) + Ball.Width) >= Canvas.GetLeft(GoalieRight))
             {
                 goRight = false;
                 goalie_2 += 1;
-                goalieLabel_2.Content = $"{goalie_2} for Goalie 2";
+                goalieLabel_2.Content = $"{goalie_2} Point for Goalie 2";
             }
 
 
-            // Sets the next y-moving direction of the ball
+            // Set the next y-moving direction of the ball
             if (Canvas.GetTop(Ball) >= Playground.ActualHeight - Ball.ActualHeight)
             {
                 goTop = false;
@@ -113,7 +119,7 @@ namespace BallSpiel
             }
         }
 
-        //Starts and Stops the game
+        //Start and Stop the game
         private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {
             if (_animationsTimer.IsEnabled)
@@ -132,28 +138,28 @@ namespace BallSpiel
         private bool goUpRight = false;
         private bool goDownRight = false;
 
-        private void PositionLeftRacket(object sender, EventArgs e)
+        private void PositionLeftGoalie(object sender, EventArgs e)
         {
-            //position left racket
-            if (goUpLeft == true && Canvas.GetTop(RacketLeft) >= RacketLeft.ActualHeight / 5)
+            //position left Goalie
+            if (goUpLeft == true && Canvas.GetTop(GoalieLeft) >= GoalieLeft.ActualHeight / 5)
             {
-                Canvas.SetTop(RacketLeft, Canvas.GetTop(RacketLeft) - playerSpeed2);
+                Canvas.SetTop(GoalieLeft, Canvas.GetTop(GoalieLeft) - playerSpeed2);
             }
-            if (goDownLeft == true && Canvas.GetTop(RacketLeft) < Playground.ActualHeight - RacketLeft.ActualHeight)
+            if (goDownLeft == true && Canvas.GetTop(GoalieLeft) < Playground.ActualHeight - GoalieLeft.ActualHeight)
             {
-                Canvas.SetTop(RacketLeft, Canvas.GetTop(RacketLeft) + playerSpeed2);
+                Canvas.SetTop(GoalieLeft, Canvas.GetTop(GoalieLeft) + playerSpeed2);
             }
-            //position right racket
-            if (goUpRight == true && Canvas.GetTop(RacketRight) >= RacketRight.ActualHeight / 5)
+            //position right Goalie
+            if (goUpRight == true && Canvas.GetTop(GoalieRight) >= GoalieRight.ActualHeight / 5)
             {
-                Canvas.SetTop(RacketRight, Canvas.GetTop(RacketRight) - playerSpeed2);
+                Canvas.SetTop(GoalieRight, Canvas.GetTop(GoalieRight) - playerSpeed2);
             }
-            if (goDownRight == true && Canvas.GetTop(RacketRight) < Playground.ActualHeight - RacketRight.ActualHeight)
+            if (goDownRight == true && Canvas.GetTop(GoalieRight) < Playground.ActualHeight - GoalieRight.ActualHeight)
             {
-                Canvas.SetTop(RacketRight, Canvas.GetTop(RacketRight) + playerSpeed2);
+                Canvas.SetTop(GoalieRight, Canvas.GetTop(GoalieRight) + playerSpeed2);
             }
         }
-        private void Racket_KeyDown(object sender, KeyEventArgs e)
+        private void Goalie_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.E)
             {
@@ -172,7 +178,7 @@ namespace BallSpiel
                 goDownRight = true;
             }
         }
-        private void Racket_KeyUp(object sender, KeyEventArgs e)
+        private void Goalie_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.E)
             {
