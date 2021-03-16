@@ -12,15 +12,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Content="Start/Stop" Name="StartStopButton" HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Height="40" Width="90" Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" FontSize="16" Click="StartStopButton_Click" Grid.ColumnSpan="2"/>
-        <Label Content="0 Fails Player 2" Name="OutLabel_1" HorizontalAlignment="Left" Margin="787,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.454,-0.483" Width="131" Height="40
+        <Label Content="0 Fails Goalie 2" Name="OutLabel_1" HorizontalAlignment="Left" Margin="787,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.454,-0.483" Width="131" Height="40
                " FontSize="16" Background="#FFEE8989" Grid.ColumnSpan="2"/>
-        <Label Content="0 Fails Player 1" Name="OutLabel_2" HorizontalAlignment="Left" Margin="15,130,0,0" VerticalAlignment="Top" Width="139" Height="40" Background="#FFEABB70" FontSize="16" Grid.ColumnSpan="2"/>
+        <Label Content="0 Fails Goalie 1" Name="OutLabel_2" HorizontalAlignment="Left" Margin="15,130,0,0" VerticalAlignment="Top" Width="139" Height="40" Background="#FFEE8989" FontSize="16" Grid.ColumnSpan="2"/>
         <Canvas Margin="171,10,250,50" Name="Playground" Focusable="True" Background="#FF00B853" Height="380" Width="580" KeyDown="Goalie_KeyDown" KeyUp="Goalie_KeyUp" Grid.ColumnSpan="2">
             <Ellipse Width="30" Height="30" Name="Ball" Fill="#FFDC0DD3" RenderTransformOrigin="0.0,0.0" Canvas.Left="165" Canvas.Top="120"/>
             <Rectangle Name="GoalieLeft" Fill="AntiqueWhite" Height="100" Stroke="Black" Width="15" Canvas.Top="100" Canvas.Left="10"/>
             <Rectangle Name="GoalieRight" Fill="AntiqueWhite" Height="100" Canvas.Left="555" Stroke="Black" Canvas.Top="120" Width="15"/>
+            <Label Content="Score" Name="score" Grid.ColumnSpan="2" VerticalAlignment="Top" Width="222" Height="30" FontSize="16" Canvas.Left="165" Canvas.Top="20" FontFamily="Segoe UI Black" HorizontalAlignment="Left" HorizontalContentAlignment="Center"/>
         </Canvas>
-        <Label Content="0 for Goalie 1" Name="goalieLabel_1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="15,187,0,0" VerticalAlignment="Top" Width="139" Height="30" FontSize="16"/>
-        <Label Content="0 for Goalie 2" Name="goalieLabel_2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="787,187,0,0" VerticalAlignment="Top" Width="139" Height="30" FontSize="16"/>
+        <Label Content="0 Points for Goalie 1" Name="goalieLabel_1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="15,187,0,0" VerticalAlignment="Top" Width="151" Height="30" FontSize="16"/>
+        <Label Content="0 Points for Goalie 2" Name="goalieLabel_2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="787,187,0,0" VerticalAlignment="Top" Width="157" Height="30" FontSize="16"/>
     </Grid>
 </Window>

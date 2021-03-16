@@ -77,12 +77,14 @@ namespace BallSpiel
                 goRight = false;
                 counterFail_1 += 1;
                 OutLabel_1.Content = $"{counterFail_1} Fail for Goalie 2";
+                score.Content = $"Score {counterFail_1} : {counterFail_2}";
             }
             else if (Canvas.GetLeft(Ball) <= 0)
             {
                 goRight = true;
                 counterFail_2 += 1;
                 OutLabel_2.Content = $"{counterFail_2} Fail for Goalie 1";
+                score.Content = $"Score {counterFail_1} : {counterFail_2}";
             }
 
             //Goalie shoot the ball and increase points for the goalie
